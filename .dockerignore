@@ -4,3 +4,8 @@ public/uploads
 .bundle
 .ruby-version
 .git
+test
+spec
+tmp/*
+.rspec-failures
+public/uploads
