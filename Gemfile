@@ -22,8 +22,8 @@ gem "decidim", git: "https://github.com/decidim/decidim.git", branch: "release/0
 # gem "decidim-initiatives_no_signature_allowed", git: "https://github.com/OpenSourcePolitics/decidim-module-initiatives_nosignature_allowed.git"
 gem "decidim-navbar_links", git: "https://github.com/OpenSourcePolitics/decidim-module-navbar_links.git", branch: "0.22-stable"
 # gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps"
-gem "decidim-term_customizer", git: "https://github.com/OpenSourcePolitics/decidim-module-term_customizer.git", branch: "0.dev"
 gem "decidim-cookies", git: "https://github.com/OpenSourcePolitics/decidim-module_cookies.git", branch: "release/0.22-stable"
+gem "decidim-term_customizer", git: "https://github.com/OpenSourcePolitics/decidim-module-term_customizer.git", branch: "0.dev"
 
 gem "bootsnap", "~> 1.3"
 
@@ -57,12 +57,12 @@ end
 
 group :production do
   # gem "rubocop-rails"
-  gem "passenger"
-  gem "fog-aws"
   gem "dalli"
-  gem "sendgrid-ruby"
-  gem "newrelic_rpm"
+  gem "fog-aws"
   gem "lograge"
+  gem "newrelic_rpm"
+  gem "passenger"
+  gem "sendgrid-ruby"
   gem "sidekiq"
   gem "sidekiq-scheduler"
 end
