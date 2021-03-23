@@ -16,8 +16,9 @@ describe "Account", type: :system do
     it "shows the account form when clicking on the menu" do
       visit decidim.root_path
 
-      within_user_menu do
-        find("a", text: "account").click
+      within ".topbar__user__logged" do
+        find("ul").hover
+        find(".sign-out-link").click
       end
 
       expect(page).to have_css("form.edit_user")
