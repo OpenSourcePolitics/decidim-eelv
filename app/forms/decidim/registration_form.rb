@@ -16,7 +16,10 @@ module Decidim
     attribute :tos_agreement, Boolean
     attribute :current_locale, String
     jsonb_attribute :registration_metadata, [
-      [:foo, String]
+      [:gender, String],
+      [:birth_date, Integer],
+      [:residence_department, String],
+      [:motivations, String]
     ]
 
     validates :name, presence: true
@@ -35,6 +38,22 @@ module Decidim
       return nil unless newsletter?
 
       Time.current
+    end
+
+    def gender_for_metadata
+      [
+        I18n.t("male", scope: "decidim.devise.registrations.new.registration_metadata"),
+        I18n.t("female", scope: "decidim.devise.registrations.new.registration_metadata"),
+        I18n.t("other", scope: "decidim.devise.registrations.new.registration_metadata")
+      ]
+    end
+
+    def birth_date_for_metadata
+      (Time.current.year - 100..Time.current.year).to_a.reverse
+    end
+
+    def residence_department_for_metadata
+      I18n.t("residence_departments", scope: "decidim.devise.registrations.new.registration_metadata")
     end
 
     private

@@ -16,8 +16,17 @@ module Decidim
         let(:tos_agreement) { "1" }
         let(:newsletter) { "1" }
         let(:current_locale) { "es" }
+        let(:gender) { "Female" }
+        let(:birth_date) { 1986 }
+        let(:residence_department) { 0o1 }
+        let(:motivations) { "Explanation" }
         let(:registration_metadata) do
-          { foo: "bar" }
+          {
+            gender: gender,
+            birth_date: birth_date,
+            residence_department: residence_department,
+            motivations: motivations
+          }
         end
 
         let(:form_params) do

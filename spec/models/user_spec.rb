@@ -6,8 +6,17 @@ module Decidim
   describe User do
     subject { user }
 
+    let(:gender) { "Female" }
+    let(:birth_date) { 1946 }
+    let(:residence_department) { 0o1 }
+    let(:motivations) { "Explanation" }
     let(:registration_metadata) do
-      { key: "value" }
+      {
+        gender: gender,
+        birth_date: birth_date,
+        residence_department: residence_department,
+        motivations: motivations
+      }
     end
     let(:organization) { create(:organization) }
     let(:user) { build(:user, registration_metadata: registration_metadata, organization: organization) }
@@ -263,7 +272,13 @@ module Decidim
       end
 
       it "returns registration metadata" do
-        expect(user.registration_metadata).to eq("key" => "value", "foo" => "bar")
+        expect(user.registration_metadata).to eq(
+          "gender" => gender,
+          "birth_date" => birth_date,
+          "foo" => "bar",
+          "residence_department" => residence_department,
+          "motivations" => motivations
+        )
       end
     end
   end

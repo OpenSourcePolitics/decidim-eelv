@@ -47,7 +47,7 @@ module Decidim
         email_on_notification: true,
         accepted_tos_version: form.current_organization.tos_version,
         locale: form.current_locale,
-      registration_metadata: form.registration_metadata
+        registration_metadata: form.registration_metadata
       )
     end
   end
