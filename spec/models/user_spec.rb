@@ -18,7 +18,7 @@ module Decidim
 
     it "overwrites the log presenter" do
       expect(described_class.log_presenter_class_for(:foo))
-          .to eq Decidim::AdminLog::UserPresenter
+        .to eq Decidim::AdminLog::UserPresenter
     end
 
     it "has an association for identities" do
@@ -82,8 +82,8 @@ module Decidim
 
             expect do
               create(:user, organization: user.organization,
-                     nickname: user.nickname,
-                     managed: true)
+                            nickname: user.nickname,
+                            managed: true)
             end.not_to raise_error
           end
         end
@@ -106,8 +106,8 @@ module Decidim
 
             expect do
               create(:user, organization: user.organization,
-                     nickname: user.nickname,
-                     deleted_at: Time.current)
+                            nickname: user.nickname,
+                            deleted_at: Time.current)
             end.not_to raise_error
           end
         end
@@ -127,7 +127,7 @@ module Decidim
 
           expect do
             build(:user, organization: user.organization,
-                  nickname: user.nickname).save(validate: false)
+                         nickname: user.nickname).save(validate: false)
           end.to raise_error(ActiveRecord::RecordNotUnique)
         end
       end
@@ -144,8 +144,8 @@ module Decidim
         let(:avatar_path) { Decidim::Dev.asset("malicious.jpg") }
         let(:user) do
           build(
-              :user,
-              avatar: Rack::Test::UploadedFile.new(avatar_path, "image/jpg")
+            :user,
+            avatar: Rack::Test::UploadedFile.new(avatar_path, "image/jpg")
           )
         end
 
@@ -244,10 +244,10 @@ module Decidim
 
       let(:conditions) do
         {
-            env: {
-                "decidim.current_organization" => organization
-            },
-            email: user.email.upcase
+          env: {
+            "decidim.current_organization" => organization
+          },
+          email: user.email.upcase
         }
       end
 
@@ -263,7 +263,7 @@ module Decidim
       end
 
       it "returns registration metadata" do
-        expect(user.registration_metadata).to eq({ "key" => "value", "foo" => "bar" })
+        expect(user.registration_metadata).to eq("key" => "value", "foo" => "bar")
       end
     end
   end
