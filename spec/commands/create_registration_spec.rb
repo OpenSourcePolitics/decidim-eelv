@@ -16,6 +16,9 @@ module Decidim
         let(:tos_agreement) { "1" }
         let(:newsletter) { "1" }
         let(:current_locale) { "es" }
+        let(:registration_metadata) do
+          { foo: "bar" }
+        end
 
         let(:form_params) do
           {
@@ -26,7 +29,8 @@ module Decidim
               "password" => password,
               "password_confirmation" => password_confirmation,
               "tos_agreement" => tos_agreement,
-              "newsletter_at" => newsletter
+              "newsletter_at" => newsletter,
+              "registration_metadata" => registration_metadata
             }
           }
         end
@@ -92,7 +96,8 @@ module Decidim
               email_on_notification: true,
               organization: organization,
               accepted_tos_version: organization.tos_version,
-              locale: form.current_locale
+              locale: form.current_locale,
+              registration_metadata: registration_metadata
             ).and_call_original
 
             expect { command.call }.to change(User, :count).by(1)
@@ -106,6 +111,14 @@ module Decidim
                 command.call
                 expect(User.last.newsletter_notifications_at).to eq(nil)
               end.to change(User, :count).by(1)
+            end
+          end
+
+          context "when registration_metadata is empty" do
+            let(:registration_metadata) { nil }
+
+            it "broadcasts ok" do
+              expect { command.call }.to broadcast(:ok)
             end
           end
         end
