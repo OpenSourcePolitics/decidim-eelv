@@ -6,8 +6,22 @@ module Decidim
   describe User do
     subject { user }
 
+    let(:gender) { "Female" }
+    let(:birth_date) { 1946 }
+    let(:residence_department) { 0o1 }
+    let(:motivations) { "Explanation" }
+    let(:primary_participation) { "1" }
+    let(:registration_metadata) do
+      {
+        gender: gender,
+        birth_date: birth_date,
+        residence_department: residence_department,
+        motivations: motivations,
+        primary_participation: primary_participation
+      }
+    end
     let(:organization) { create(:organization) }
-    let(:user) { build(:user, organization: organization) }
+    let(:user) { build(:user, registration_metadata: registration_metadata, organization: organization) }
 
     include_examples "resourceable"
 
@@ -250,6 +264,24 @@ module Decidim
 
       it "finds the user even with weird casing in email" do
         expect(described_class.find_for_authentication(conditions)).to eq user
+      end
+    end
+
+    describe "#registration_metadata" do
+      before do
+        user.registration_metadata[:foo] = "bar"
+        user.save
+      end
+
+      it "returns registration metadata" do
+        expect(user.registration_metadata).to eq(
+          "gender" => gender,
+          "birth_date" => birth_date,
+          "foo" => "bar",
+          "residence_department" => residence_department,
+          "motivations" => motivations,
+          "primary_participation" => primary_participation
+        )
       end
     end
   end

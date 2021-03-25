@@ -19,6 +19,20 @@ module Decidim
     let(:password) { "S4CGQ9AM4ttJdPKS" }
     let(:password_confirmation) { password }
     let(:tos_agreement) { "1" }
+    let(:gender) { "Male" }
+    let(:birth_date) { 1921 }
+    let(:residence_department) { 0o1 }
+    let(:motivations) { "Explanation" }
+    let(:primary_participation) { "1" }
+    let(:registration_metadata) do
+      {
+        gender: gender,
+        birth_date: birth_date,
+        residence_department: residence_department,
+        motivations: motivations,
+        primary_participation: primary_participation
+      }
+    end
 
     let(:attributes) do
       {
@@ -27,7 +41,8 @@ module Decidim
         email: email,
         password: password,
         password_confirmation: password_confirmation,
-        tos_agreement: tos_agreement
+        tos_agreement: tos_agreement,
+        registration_metadata: registration_metadata
       }
     end
 
@@ -123,6 +138,12 @@ module Decidim
       let(:tos_agreement) { "0" }
 
       it { is_expected.to be_invalid }
+    end
+
+    context "when registration_metadata is empty" do
+      let(:registration_metadata) { nil }
+
+      it { is_expected.to be_valid }
     end
   end
 end
