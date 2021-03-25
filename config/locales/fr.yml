@@ -34,6 +34,8 @@ fr:
           newsletter_title: Autorisation de contact
           nickname_help: Votre alias dans %{organization}
           password_help: "%{minimun_characters} caractères minimum, ne doit pas être trop commun (par exemple 123456) et doit être différent de votre pseudo et de votre email."
+          primary_participation: Je souhaite être contacté-e pour participer à la primaire
+          primary_participation_title: Participation à la primaire
           registration_metadata:
             female: Femme
             male: Homme

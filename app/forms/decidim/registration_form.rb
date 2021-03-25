@@ -19,7 +19,8 @@ module Decidim
       [:gender, String],
       [:birth_date, Integer],
       [:residence_department, String],
-      [:motivations, String]
+      [:motivations, String],
+      [:primary_participation, String]
     ]
 
     validates :name, presence: true

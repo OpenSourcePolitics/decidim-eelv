@@ -20,12 +20,14 @@ module Decidim
         let(:birth_date) { 1986 }
         let(:residence_department) { 0o1 }
         let(:motivations) { "Explanation" }
+        let(:primary_participation) { "1" }
         let(:registration_metadata) do
           {
             gender: gender,
             birth_date: birth_date,
             residence_department: residence_department,
-            motivations: motivations
+            motivations: motivations,
+            primary_participation: primary_participation
           }
         end
 

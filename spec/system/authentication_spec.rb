@@ -15,6 +15,7 @@ def fill_registration_metadata
   select birth_date, from: :registration_user_birth_date
   select residence_department, from: :registration_user_residence_department
   fill_in :registration_user_motivations, with: motivations
+  check :registration_user_primary_participation
 end
 
 describe "Authentication", type: :system do
