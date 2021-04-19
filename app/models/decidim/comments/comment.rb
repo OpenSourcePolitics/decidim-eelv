@@ -99,7 +99,7 @@ module Decidim
 
       # Public: Overrides the `reported_content_url` Reportable concern method.
       def reported_content_url
-        ResourceLocatorPresenter.new(root_commentable).url(commentId: "#{id}")
+        ResourceLocatorPresenter.new(root_commentable).url(commentId: id.to_s)
       end
 
       # Public: Returns the comment message ready to display (it is expected to include HTML)
