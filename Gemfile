@@ -34,6 +34,8 @@ gem "uglifier", "~> 4.1"
 
 gem "faker", "~> 1.8"
 
+gem 'rails', '5.2.4.5'
+
 gem "ruby-progressbar"
 gem "sentry-raven"
 
