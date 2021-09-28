@@ -22,7 +22,7 @@ if Rails.application.secrets.dig(:scaleway, :id).present? && Rails.env.productio
       "Cache-Control" => "max-age=#{365.days.to_i}",
       "X-Content-Type-Options" => "nosniff"
     }
-    config.asset_host = "https://#{Rails.application.secrets.dig(:asset_host)}/" if Rails.application.secrets.dig(:asset_host).present?
+    config.asset_host = "https://#{Rails.application.secrets.dig(:asset_host)}" if Rails.application.secrets.dig(:asset_host).present?
   end
 else
   CarrierWave.configure do |config|
