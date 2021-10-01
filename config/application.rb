@@ -19,7 +19,7 @@ module DevelopmentApp
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
 
     # This needs to be set for correct images URLs in emails
-    config.action_mailer.asset_host = "https://#{Rails.application.secrets.dig(:asset_host)}/" if Rails.application.secrets.dig(:asset_host).present?
+    config.action_mailer.asset_host = "https://#{Rails.application.secrets[:asset_host]}/" if Rails.application.secrets[:asset_host].present?
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
