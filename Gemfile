@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-DECIDIM_VERSION = "release/0.23-stable"
+DECIDIM_VERSION = "release/0.24-stable"
 
 ruby RUBY_VERSION
 
@@ -13,8 +13,8 @@ gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VE
 # gem "decidim-consultations", git: "https://github.com/decidim/decidim.git", branch: "release/0.23-stable"
 # gem "decidim-initiatives", git: "https://github.com/decidim/decidim.git", branch: "release/0.23-stable"
 
-gem "decidim-decidim_awesome", "~> 0.6.0"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "0.23-stable"
+gem "decidim-decidim_awesome", "~> 0.7.0"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
 
 # gem "decidim-calendar", git: "https://github.com/alabs/decidim-module-calendar"
 # gem "decidim-combined_budgeting", git: "https://github.com/mainio/decidim-module-combined_budgeting"
@@ -28,10 +28,10 @@ gem "bootsnap", "~> 1.4"
 
 gem "dotenv-rails"
 
-gem "puma", "~> 4.3.7"
+gem "puma", "~> 5.3.1"
 gem "uglifier", "~> 4.1"
 
-gem "faker", "~> 1.9"
+gem "faker", "~> 2.14"
 
 gem "ruby-progressbar"
 
