@@ -6,7 +6,7 @@ Decidim.configure do |config|
   config.mailer_sender = "OSP Agora <ne-pas-repondre@opensourcepolitics.eu>"
 
   # Change these lines to set your preferred locales
-  config.default_locale = :fr
+  config.default_locale = :en
   config.available_locales = [:en, :fr]
 
   config.maximum_attachment_height_or_width = 6000
@@ -91,7 +91,7 @@ Decidim.configure do |config|
     }
   end
 
-  config.base_uploads_path = ENV["HEROKU_APP_NAME"] + "/" if ENV["HEROKU_APP_NAME"].present?
+  config.base_uploads_path = "#{ENV["HEROKU_APP_NAME"]}/" if ENV["HEROKU_APP_NAME"].present?
 end
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales

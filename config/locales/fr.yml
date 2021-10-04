@@ -9,6 +9,19 @@ fr:
       participatory_process:
         private_space: Espace privé
   decidim:
+    accessibility:
+      skip_button: Passer au contenu principal
+    admin:
+      participatory_space_private_users:
+        create:
+          error: Erreur
+          success: Succès
+    amendments:
+      emendation:
+        announcement:
+          evaluating: |-
+            Cet amendement pour le %{amendable_type} %{proposal_link}
+            est en cours d’évaluation.
     authorization_handlers:
       osp_authorization_handler:
         explanation: Vérifier votre identité en saisissant un numéro unique
