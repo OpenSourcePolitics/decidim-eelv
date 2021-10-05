@@ -5,6 +5,7 @@ require "spec_helper"
 module Decidim
   module Comments
     describe CreateRegistration do
+      # rubocop:disable RSpec/MultipleMemoizedHelpers
       describe "call" do
         let(:organization) { create(:organization) }
 
@@ -57,7 +58,7 @@ module Decidim
 
         describe "when the form is not valid" do
           before do
-            expect(form).to receive(:invalid?).and_return(true)
+            allow(form).to receive(:invalid?).and_return(true)
           end
 
           it "broadcasts invalid" do
@@ -134,6 +135,7 @@ module Decidim
           end
         end
       end
+      # rubocop:enable RSpec/MultipleMemoizedHelpers
     end
   end
 end
