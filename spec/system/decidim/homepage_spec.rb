@@ -432,8 +432,6 @@ describe "Homepage", type: :system do
             expect(zipfile.glob("*open-data-proposals.csv").length).to eq(1)
             expect(zipfile.glob("*open-data-results.csv").length).to eq(1)
             expect(zipfile.glob("*open-data-meetings.csv").length).to eq(1)
-            expect(zipfile.glob("*open-data-elections.csv").length).to eq(1)
-            expect(zipfile.glob("*open-data-votings.csv").length).to eq(1)
           end
         end
       end
