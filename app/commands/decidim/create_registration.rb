@@ -6,11 +6,9 @@ module Decidim
     # Public: Initializes the command.
     #
     # form - A form object with the params.
-    # rubocop:disable Lint/MissingSuper
     def initialize(form)
       @form = form
     end
-    # rubocop:enable Lint/MissingSuper
 
     # Executes the command. Broadcasts these events:
     #

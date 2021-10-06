@@ -5,7 +5,6 @@ require "spec_helper"
 module Decidim
   module Comments
     describe CreateRegistration do
-      # rubocop:disable RSpec/MultipleMemoizedHelpers
       describe "call" do
         let(:organization) { create(:organization) }
 
@@ -135,7 +134,6 @@ module Decidim
           end
         end
       end
-      # rubocop:enable RSpec/MultipleMemoizedHelpers
     end
   end
 end

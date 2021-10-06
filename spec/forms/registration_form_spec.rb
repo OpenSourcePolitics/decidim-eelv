@@ -4,7 +4,6 @@ require "spec_helper"
 
 module Decidim
   describe RegistrationForm do
-    # rubocop:disable RSpec/MultipleMemoizedHelpers
     subject do
       described_class.from_params(
         attributes
@@ -146,6 +145,5 @@ module Decidim
 
       it { is_expected.to be_valid }
     end
-    # rubocop:enable RSpec/MultipleMemoizedHelpers
   end
 end
