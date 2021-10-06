@@ -3,6 +3,7 @@
 require "decidim/dev"
 Decidim::Dev.dummy_app_path = File.expand_path(Rails.root.to_s)
 require "decidim/dev/test/base_spec_helper"
+Dir[Rails.root.join("spec", "rspec_support", "**", "*.rb")].each { |f| require f }
 
 DEFAULT_LOCALE = :en
 AVAILABLE_LOCALES = [:en, :ca, :es].freeze
