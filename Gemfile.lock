@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/decidim/decidim.git
-  revision: a610ad4fe4c4a821e0dc66188bdd6c7fe2998c34
+  revision: 999ce75b740b2d7ef5adadab9b162767c461cbc8
   branch: release/0.24-stable
   specs:
     decidim (0.24.3)
@@ -766,6 +766,9 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
+    rubocop-faker (1.1.0)
+      faker (>= 2.12.0)
+      rubocop (>= 0.82.0)
     rubocop-rails (2.9.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -926,6 +929,7 @@ DEPENDENCIES
   newrelic_rpm
   passenger
   puma (~> 5.3.1)
+  rubocop-faker
   ruby-progressbar
   sendgrid-ruby
   sentry-rails
