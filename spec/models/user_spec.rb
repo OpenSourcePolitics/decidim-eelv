@@ -145,7 +145,7 @@ module Decidim
 
       context "when the file is too big" do
         before do
-          expect(subject.avatar).to receive(:size).and_return(11.megabytes)
+          allow(subject.avatar).to receive(:size).and_return(11.megabytes)
         end
 
         it { is_expected.not_to be_valid }
