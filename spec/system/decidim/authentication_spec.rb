@@ -2,9 +2,29 @@
 
 require "spec_helper"
 
+def fill_registration_form
+  fill_in :registration_user_email, with: "user@example.org"
+  fill_in :registration_user_name, with: "Responsible Citizen"
+  fill_in :registration_user_nickname, with: "responsible"
+  fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+  fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
+end
+
+def fill_registration_metadata
+  select gender, from: :registration_user_gender
+  select birth_date, from: :registration_user_birth_date
+  select residence_department, from: :registration_user_residence_department
+  fill_in :registration_user_motivations, with: motivations
+  check :registration_user_primary_participation
+end
+
 describe "Authentication", type: :system do
   let(:organization) { create(:organization) }
   let(:last_user) { Decidim::User.last }
+  let(:gender) { "Other" }
+  let(:birth_date) { 2021 }
+  let(:residence_department) { "01" }
+  let(:motivations) { "Reasons" }
 
   before do
     switch_to_host(organization.host)
@@ -17,11 +37,8 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
+          fill_registration_form
+          fill_registration_metadata
           check :registration_user_tos_agreement
           check :registration_user_newsletter
           find("*[type=submit]").click
@@ -29,12 +46,27 @@ describe "Authentication", type: :system do
 
         expect(page).to have_content("You have signed up successfully")
       end
+
+      context "when registration_metadata is empty" do
+        it "creates a new User" do
+          find(".sign-up-link").click
+
+          within ".new_user" do
+            fill_registration_form
+            check :registration_user_tos_agreement
+            check :registration_user_newsletter
+            find("*[type=submit]").click
+          end
+
+          expect(page).to have_content("You have signed up successfully")
+        end
+      end
     end
 
     context "when using another langage" do
       before do
         within_language_menu do
-          click_link "Castellano"
+          click_link "English"
         end
       end
 
@@ -42,18 +74,15 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
+          fill_registration_form
+          fill_registration_metadata
           check :registration_user_tos_agreement
           check :registration_user_newsletter
           find("*[type=submit]").click
         end
 
-        expect(page).to have_content("¡Bienvenida! Te has registrado con éxito.")
-        expect(last_user.locale).to eq("es")
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+        expect(last_user.locale).to eq("en")
       end
     end
 
@@ -63,11 +92,8 @@ describe "Authentication", type: :system do
 
         within ".new_user" do
           page.execute_script("$($('.new_user > div > input')[0]).val('Ima robot :D')")
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
+          fill_registration_form
+          fill_registration_metadata
           check :registration_user_tos_agreement
           check :registration_user_newsletter
           find("*[type=submit]").click
@@ -297,17 +323,6 @@ describe "Authentication", type: :system do
         expect(page).to have_content("Signed in successfully")
         expect(page).to have_content(user.name)
       end
-
-      it "caches the omniauth buttons correctly with different languages", :caching do
-        find(".sign-in-link").click
-        expect(page).to have_content("Sign in with Facebook")
-
-        within_language_menu do
-          click_link "Català"
-        end
-
-        expect(page).to have_content("Inicia sessió amb Facebook")
-      end
     end
 
     describe "Forgot password" do
@@ -350,7 +365,8 @@ describe "Authentication", type: :system do
       end
 
       it "signs out the user" do
-        within_user_menu do
+        within ".topbar__user__logged" do
+          find("a", text: user.name).hover
           find(".sign-out-link").click
         end
 
