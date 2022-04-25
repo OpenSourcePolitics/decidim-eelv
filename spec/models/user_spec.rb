@@ -68,7 +68,7 @@ module Decidim
 
         it "is not valid" do
           expect(user).not_to be_valid
-          expect(user.errors[:nickname].length).to eq(1)
+          expect(user.errors[:nickname].length).to eq(2)
         end
 
         it "can't be empty backed by an index" do
@@ -145,7 +145,7 @@ module Decidim
 
       context "when the file is too big" do
         before do
-          expect(subject.avatar).to receive(:size).and_return(11.megabytes)
+          allow(subject.avatar).to receive(:size).and_return(11.megabytes)
         end
 
         it { is_expected.not_to be_valid }
